@@ -1,0 +1,77 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext {
+    configuration = [
+            package             : "info.acidflow.cookee",
+            buildToolsVersion   : "23.0.2",
+            compileSdkVersion   : 23,
+            minSdkVersion       : 16,
+            minSdkVersionWear   : 21,
+            targetSdkVersion    : 23,
+            lint : [
+                    abortOnError : false
+            ]
+    ]
+
+    buildConfig = [
+            type : [
+                    STRING : "String"
+            ],
+            field : [
+                    REST_ENDPOINT : "REST_ENDPOINT"
+            ],
+            debug : [
+                    restEndpoint : 'http://192.168.1.2:3000'
+            ],
+            release : [
+                    restEndpoint : 'RELEASE_SERVER_URL'
+            ]
+
+    ]
+
+    libraries = [
+            okhttp              : "3.0.1",
+            okhttpLogging       : "3.0.1",
+            retrofit            : "2.0.0-beta3",
+            retrofitConverter   : "2.0.0-beta3",
+            retrofitAdapter     : "2.0.0-beta3",
+            dagger              : "2.0.2",
+            daggerCompiler      : "2.0.2",
+            javaxAnnotation     : "10.0-b28",
+            support             : "23.2.0",
+            supportWearable     : "1.3.0",
+            playservices        : "8.4.0",
+            rxjava              : "1.1.0",
+            rxandroid           : "1.1.0",
+            butterknife         : "7.0.1",
+            timber              : "4.1.0",
+            recyclerViewAnimator: "2.2.0",
+            junit               : "4.12"
+
+    ]
+}
+
+def configuration = rootProject.ext.configuration;
+def libraries = rootProject.ext.libraries;
+def buildConfig = rootProject.ext.buildConfig;
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0-alpha3'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
